@@ -1,7 +1,7 @@
-import "./App.css";
-import Home from "./screen/HomeScreen";
-import Navbar from "./components/Navbar";
-function App() {
+import React from "react";
+import Home from "./Home";
+import Navbar from "./Navbar";
+const Base = ({ children }) => {
   return (
     <div>
       <div
@@ -11,10 +11,10 @@ function App() {
         <div className="fixed top-0 left-0 z-50 w-full lg:w-auto">
           <Navbar />
         </div>
-        <Home />
+        {children}
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default Base;

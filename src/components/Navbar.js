@@ -14,7 +14,7 @@ const Navbar = () => {
           }`}
         ></i>
         <i
-          class={`fa fa-times text-md md:text-xl  ${
+          className={`fa fa-times text-md md:text-xl  ${
             !navVisible ? "hidden" : "inline"
           }`}
         ></i>
@@ -24,22 +24,22 @@ const Navbar = () => {
                     ${navVisible ? "" : "hidden"}`}
       >
         <div className="text-xl md:text-3xl  mt-2">
-          <a>Home</a>
+          <a href="/">Home</a>
         </div>
         <div className="text-xl md:text-3xl  mt-2">
-          <a>About</a>
+          <a href="/about">About</a>
         </div>
         <div className="text-xl md:text-3xl  mt-2">
-          <a>Create</a>
+          <a href="/create">Create</a>
         </div>
         <div className="text-xl md:text-3xl  mt-2">
-          <a>Get Inspired</a>
+          <a href="/feed">Get Inspired</a>
         </div>
         <div className="text-xl md:text-3xl  mt-2">
-          <a>Login</a>
+          <a href="/login">Login</a>
         </div>
         <div className="text-xl md:text-3xl  mt-2">
-          <a>Signup</a>
+          <a href="/signup">Signup</a>
         </div>
       </div>
     </React.Fragment>
