@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link, withRouter } from "react-router-dom";
 const Navbar = () => {
   const [navVisible, setNavVisible] = useState(false);
   const togleNavBar = () => {
@@ -24,22 +24,22 @@ const Navbar = () => {
                     ${navVisible ? "" : "hidden"}`}
       >
         <div className="text-xl md:text-3xl  mt-2">
-          <a href="/">Home</a>
+          <Link to="/">Home</Link>
         </div>
         <div className="text-xl md:text-3xl  mt-2">
-          <a href="/about">About</a>
+          <Link to="/about">About</Link>
         </div>
         <div className="text-xl md:text-3xl  mt-2">
-          <a href="/create">Create</a>
+          <Link to="/create">Create</Link>
         </div>
         <div className="text-xl md:text-3xl  mt-2">
-          <a href="/feed">Get Inspired</a>
+          <Link to="/feed">Get Inspired</Link>
         </div>
         <div className="text-xl md:text-3xl  mt-2">
-          <a href="/login">Login</a>
+          <Link to="/login">Login</Link>
         </div>
         <div className="text-xl md:text-3xl  mt-2">
-          <a href="/signup">Signup</a>
+          <Link to="/signup">Signup</Link>
         </div>
       </div>
     </React.Fragment>

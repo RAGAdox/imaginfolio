@@ -6,6 +6,9 @@ module.exports = {
       backgroundImage: (theme) => ({
         leafs: "url('./assets/bg-leaf.png')",
       }),
+      zIndex: {
+        "-10": "-10",
+      },
     },
   },
   variants: {
