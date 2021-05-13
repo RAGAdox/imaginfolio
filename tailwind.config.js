@@ -1,11 +1,15 @@
 module.exports = {
   purge: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: (theme) => ({
+        leafs: "url('./assets/bg-leaf.png')",
+      }),
+    },
   },
   variants: {
     extend: {},
   },
   plugins: [],
-}
+};
