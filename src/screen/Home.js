@@ -7,8 +7,10 @@ const Home = () => {
                         flex items-center  text-gray-50"
     >
       <div className="flex flex-col  text-center mx-auto">
-        <h1 className="text-8xl">IMAGINFOLIO</h1>
-        <p className="text-2xl">A Place to Showcase your Creativity</p>
+        <h1 className="text-4xl md:text-6xl">IMAGINFOLIO</h1>
+        <p className="text-md md:text-xl">
+          A Place to Showcase your Creativity
+        </p>
       </div>
     </div>
   );
