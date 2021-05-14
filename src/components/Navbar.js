@@ -20,25 +20,25 @@ const Navbar = () => {
         ></i>
       </span>
       <div
-        className={`z-40 backdrop-filter backdrop-blur-2xl lg:backdrop-filter-none flex flex-col px-20 text-center cursor-pointer h-screen justify-center text-gray-50 w-full animate-menu-drop
+        className={`z-40 backdrop-filter backdrop-blur-2xl lg:backdrop-filter-none flex flex-col px-20 text-center cursor-pointer h-screen justify-center text-gray-50 w-full 
                     ${navVisible ? "" : "hidden"}`}
       >
-        <div className="text-xl md:text-3xl  mt-2">
+        <div className="text-xl md:text-3xl  mt-2 animate-menu-drop">
           <Link to="/">Home</Link>
         </div>
-        <div className="text-xl md:text-3xl  mt-2">
+        <div className="text-xl md:text-3xl  mt-2 animate-menu-drop">
           <Link to="/about">About</Link>
         </div>
-        <div className="text-xl md:text-3xl  mt-2">
+        <div className="text-xl md:text-3xl  mt-2 animate-menu-drop">
           <Link to="/create">Create</Link>
         </div>
-        <div className="text-xl md:text-3xl  mt-2">
+        <div className="text-xl md:text-3xl  mt-2 animate-menu-drop">
           <Link to="/feed">Get Inspired</Link>
         </div>
-        <div className="text-xl md:text-3xl  mt-2">
+        <div className="text-xl md:text-3xl  mt-2 animate-menu-drop">
           <Link to="/login">Login</Link>
         </div>
-        <div className="text-xl md:text-3xl  mt-2">
+        <div className="text-xl md:text-3xl  mt-2 animate-menu-drop">
           <Link to="/signup">Signup</Link>
         </div>
       </div>

@@ -36,7 +36,7 @@ module.exports = {
         "bg-image-fade-in": "fadein 1s",
         "title-fade-up": "fadeup 1s 3s both",
         "sub-title-fade-in": "fadein 5s 3s both",
-        "menu-drop": "dropDown 1s both",
+        "menu-drop": "dropDown 0.5s both",
       },
     },
   },
