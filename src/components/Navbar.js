@@ -20,7 +20,7 @@ const Navbar = () => {
         ></i>
       </span>
       <div
-        className={`z-40 backdrop-filter backdrop-blur-2xl lg:backdrop-filter-none flex flex-col px-20 text-center cursor-pointer h-screen justify-center text-gray-50 w-full
+        className={`z-40 backdrop-filter backdrop-blur-2xl lg:backdrop-filter-none flex flex-col px-20 text-center cursor-pointer h-screen justify-center text-gray-50 w-full animate-menu-drop
                     ${navVisible ? "" : "hidden"}`}
       >
         <div className="text-xl md:text-3xl  mt-2">
