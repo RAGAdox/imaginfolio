@@ -31,12 +31,23 @@ module.exports = {
             transform: "translateY(0rem)",
           },
         },
+        dropUp: {
+          "100%": {
+            opacity: "0",
+            transform: "translateY(-5rem)",
+          },
+          "0%": {
+            opacity: "1",
+            transform: "translateY(0rem)",
+          },
+        },
       },
       animation: {
         "bg-image-fade-in": "fadein 1s forward",
-        "title-fade-up": "fadeup 1s 3s both",
+        "title-fade-up": "fadeup 1s 2s both",
         "sub-title-fade-in": "fadein 5s 3s both",
         "menu-drop": "dropDown 0.5s both",
+        "menu-hide": "dropUp 0.5s both",
       },
     },
   },
