@@ -8,11 +8,11 @@ const Routes = () => {
       <Base>
         <Switch>
           <Route path="/" exact component={() => <Home />} />
-          <Route
-            path="/about"
-            exact
-            component={() => <h1 className="text-gray-50">About new Style</h1>}
-          />
+          <Route path="/about" exact component={() => <React.Fragment />} />
+          <Route path="/create" exact component={() => <React.Fragment />} />
+          <Route path="/feed" exact component={() => <React.Fragment />} />
+          <Route path="/login" exact component={() => <React.Fragment />} />
+          <Route path="/signup" exact component={() => <React.Fragment />} />
         </Switch>
       </Base>
     </Router>
