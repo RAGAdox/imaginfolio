@@ -3,7 +3,7 @@ import React from "react";
 const Home = () => {
   return (
     <div
-      className="w-full h-screen backdrop-filter backdrop-blur-sm
+      className="w-full h-screen
                         flex items-center  text-gray-50"
     >
       <div className="flex flex-col  text-center mx-auto">
