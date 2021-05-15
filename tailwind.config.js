@@ -46,9 +46,9 @@ module.exports = {
       },
       animation: {
         "bg-image-fade-in": "fadein 1s forward",
-        "title-fade-up": "fadeup 1s 2s both",
-        "fade-up": "fadein 0.1s",
-        "sub-title-fade-in": "fadein 5s 3s both",
+        "title-fade-up": "fadeup 1s 1s both",
+        "fade-up": "fadeup 0.1s both",
+        "sub-title-fade-in": "fadein 2s 1s both",
         "menu-drop": "dropDown 0.5s both",
         "menu-hide": "dropUp 0.5s both",
       },

@@ -20,7 +20,7 @@ const Login = () => {
   };
   return (
     <div className="w-full h-screen text-gray-50 flex items-center justify-center content-center">
-      <form className="flex flex-col w-full lg:max-w-lg p-10 bg-green-900 bg-opacity-50 rounded-lg shadow-lg m-6 animate-title-fade-up">
+      <form className="flex flex-col w-full lg:max-w-lg p-10 bg-green-900 bg-opacity-50 rounded-lg shadow-lg m-6 animate-fade-up">
         <div className="flex flex-col mb-6">
           <label className="justify-self-start mb-2" htmlFor="username">
             Username
