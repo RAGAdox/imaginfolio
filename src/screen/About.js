@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import LoginComponent from "../components/LoginComponent";
 import Modal from "../components/Modal";
+import { isAuthenticated } from "../helper/auth";
+import { getPosts } from "../helper/post";
 const Button = ({ onClick, children }) => {
   return (
     <div
@@ -12,25 +14,31 @@ const Button = ({ onClick, children }) => {
   );
 };
 const About = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const handelEventClick = () => {
     console.log("BTN CLICK");
   };
+  const showAuthentication = () => {
+    {
+      !isAuthenticated() ? (
+        <LoginComponent
+          asModal={true}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      ) : (
+        <p>User is Authenticated</p>
+      );
+    }
+  };
   return (
-    <div className="w-full h-screen justify-center flex items-center">
-      <LoginComponent
-        asModal={true}
-        showModal={showModal}
-        setShowModal={setShowModal}
-      />
-
-      <Button
-        onClick={() => {
-          setShowModal(!showModal);
-        }}
+    <div className="w-full h-screen flex items-center">
+      <div
+        className="flex flex-row flex-wrap w-full  overflow-y-scroll justify-between h-screen items-center lg:p-20
+                      py-20 px-5"
       >
-        Click Me to Show Modal
-      </Button>
+        {getPosts()}
+      </div>
     </div>
   );
 };

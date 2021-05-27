@@ -8,11 +8,10 @@ const Navbar = () => {
       setTimeout(() => {
         setNavVisible(!navVisible);
       }, 500);
-      setMenuAnimationToggle(!menuAnimationToggle);
     } else {
       setNavVisible(!navVisible);
-      setMenuAnimationToggle(!menuAnimationToggle);
     }
+    setMenuAnimationToggle(!menuAnimationToggle);
   };
   return (
     <React.Fragment>

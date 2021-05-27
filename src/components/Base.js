@@ -9,7 +9,7 @@ const Base = ({ children }) => {
   console.log("Base accessed");
   return (
     <div>
-      <div className={`w-full h-screen ${loaded ? "" : "hidden"}`}>
+      <div className={`w-full h-screen ${loaded ? "" : "hidden"} select-none`}>
         <img
           src={bgLeaf}
           className="w-full h-screen -z-10 absolute inset-0 object-cover object-center animate-bg-image-fade-in"

@@ -11,7 +11,7 @@ const Home = () => {
           IMAGINFOLIO
         </h1>
         <p className="text-md md:text-xl animate-sub-title-fade-in">
-          A Place to Showcase your Creativity
+          A Place to Showcase your Creativity 📃 🐾 🎀 🎸 
         </p>
       </div>
     </div>

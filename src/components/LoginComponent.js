@@ -4,8 +4,9 @@ If this component is used as a modal send all the 3 props ** required
 */
 
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import validator from "validator";
+
 const LoginComponent = ({
   asModal = false,
   showModal = false,
@@ -51,6 +52,7 @@ const LoginComponent = ({
       setValues({ ...values, error: "Please Provide Correct Credentials" });
     }
   };
+
   const validEmailCheck = () => {
     setIsEmailValid(validator.isEmail(email));
   };
@@ -148,10 +150,20 @@ const LoginComponent = ({
           </div>
           <button
             onClick={onSubmit}
-            className="mt-2 bg-green-600 hover:bg-green-800 text-gray-100 font-semibold py-2 px-4 border border-green-400 rounded shadow"
+            className="mt-2 text-center bg-green-600 hover:bg-green-800 text-gray-100 font-semibold py-2 px-4 border border-green-400 rounded shadow"
           >
             Login
           </button>
+          {asModal ? (
+            <Link
+              to="/signup"
+              className="mt-2 text-center bg-green-600 hover:bg-green-800 text-gray-100 font-semibold py-2 px-4 border border-green-400 rounded shadow"
+            >
+              Sign Up
+            </Link>
+          ) : (
+            <React.Fragment />
+          )}
         </form>
       </div>
     </React.Fragment>

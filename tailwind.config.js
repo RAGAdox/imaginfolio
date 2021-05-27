@@ -64,5 +64,5 @@ module.exports = {
       ringWidth: ["active"],
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

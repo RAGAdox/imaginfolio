@@ -6,7 +6,7 @@ function App() {
     <div>
       <div
         className="bg-leafs bg-center bg-cover 
-                w-full h-screen"
+                w-full h-screen select-none"
       >
         <div className="fixed top-0 left-0 z-50 w-full lg:w-auto">
           <Navbar />
