@@ -1,5 +1,5 @@
 import React from "react";
-
+import TypeWriter from "../components/TypeWriter";
 const Home = () => {
   return (
     <div
@@ -10,9 +10,7 @@ const Home = () => {
         <h1 className="text-4xl md:text-6xl animate-title-fade-up">
           IMAGINFOLIO
         </h1>
-        <p className="text-md md:text-xl animate-sub-title-fade-in">
-          A Place to Showcase your Creativity
-        </p>
+        <TypeWriter string="A Place to Showcase your Creativity"></TypeWriter>
       </div>
     </div>
   );

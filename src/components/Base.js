@@ -2,19 +2,14 @@ import React, { useState, useEffect } from "react";
 import bgLeaf from "../assets/bg-leaf.png";
 import Navbar from "./Navbar";
 const Base = ({ children }) => {
-  const [loaded, setOnLoaded] = useState(false);
+  const [loaded, setOnLoaded] = useState(true);
   useEffect(() => {
     console.log("Remounted ");
   }, []);
   console.log("Base accessed");
   return (
     <div>
-      <div className={`w-full h-screen ${loaded ? "" : "hidden"}`}>
-        <img
-          src={bgLeaf}
-          className="w-full h-screen -z-10 absolute inset-0 object-cover object-center animate-bg-image-fade-in"
-          onLoadCapture={(d) => setOnLoaded(!loaded)}
-        />
+      <div className={`w-full h-screen bg-gray-900`}>
         <div className="fixed top-0 left-0 z-50 w-full lg:w-auto">
           <Navbar />
         </div>
@@ -22,9 +17,6 @@ const Base = ({ children }) => {
           {children}
         </div>
       </div>
-      <div
-        className={`w-full h-screen bg-gray-900 ${!loaded ? "" : "hidden"}`}
-      ></div>
     </div>
   );
 };

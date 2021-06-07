@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  .typewriter {
+    overflow-x: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    width: 0%;
+  }
+  .typewriter-caret {
+    border-right: 0.15em solid white;
+  }
+}

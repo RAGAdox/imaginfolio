@@ -41,6 +41,25 @@ module.exports = {
             transform: "translateY(0rem)",
           },
         },
+        "type-writer": {
+          "0%": {
+            width: "0%",
+          },
+          "100%": {
+            width: "100%",
+          },
+        },
+        "type-writer-caret": {
+          "0%": {
+            "border-color": "transparent",
+          },
+          "100%": {
+            "border-color": "transparent",
+          },
+          "50%": {
+            "border-color": "white",
+          },
+        },
       },
       animation: {
         "bg-image-fade-in": "fadein 1s forward",
@@ -49,6 +68,8 @@ module.exports = {
         "sub-title-fade-in": "fadein 3s 1s both",
         "menu-drop": "dropDown 0.5s both",
         "menu-hide": "dropUp 0.5s both",
+        typewriter:
+          "type-writer 3.5s 1s steps(40,end) both,type-writer-caret .75s step-end infinite",
       },
     },
   },
