@@ -11,4 +11,9 @@
   .typewriter-caret {
     border-right: 0.15em solid white;
   }
+  @variants responsive {
+    .w-fit-content {
+      width: fit-content;
+    }
+  }
 }

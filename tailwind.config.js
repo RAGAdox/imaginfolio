@@ -46,7 +46,7 @@ module.exports = {
             width: "0%",
           },
           "100%": {
-            width: "100%",
+            width: "auto",
           },
         },
         "type-writer-caret": {
@@ -69,7 +69,8 @@ module.exports = {
         "menu-drop": "dropDown 0.5s both",
         "menu-hide": "dropUp 0.5s both",
         typewriter:
-          "type-writer 3.5s 1s steps(40,end) both,type-writer-caret .75s step-end infinite",
+          "type-writer 3.5s 2s steps(40,end) both,type-writer-caret .75s step-end infinite",
+        "typewriter-caret": "type-writer-caret .75s step-end infinite",
       },
     },
   },

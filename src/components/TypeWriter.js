@@ -1,9 +1,24 @@
 import React, { useState, useEffect } from "react";
 
-const TypeWriter = ({ string = "" }) => {
+const TypeWriter = ({ text = "", delay = 2000, speed = 75 }) => {
+  const [typed, setTyped] = useState(" ");
+  let index = 0;
+  useEffect(() => {
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        if (index < text.length) {
+          setTyped((typed) => {
+            return typed + text[index++];
+          });
+        } else {
+          clearInterval(interval);
+        }
+      }, speed);
+    }, delay);
+  }, []);
   return (
-    <p className="typewriter typewriter-caret animate-typewriter">
-      A Place to Show Your Creativity
+    <p className="w-fit-content self-center typewriter-caret animate-typewriter-caret">
+      {typed}
     </p>
   );
 };
