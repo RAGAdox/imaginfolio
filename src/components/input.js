@@ -31,6 +31,7 @@ const Input = ({
         placeholder={placeholder}
         className={classNames(
           "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+          { "ring-2 ring-red-600": error },
           classname
         )}
         onChange={onChange}
