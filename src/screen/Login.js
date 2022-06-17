@@ -21,14 +21,14 @@ const Login = () => {
     if (!username)
       setValues({ ...values, error: "Please provide a valid username" });
   };
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     validate();
     if (username !== "" && password !== "")
-      login(username, password).then(({ success, token, message }) => {
+      await login(username, password).then(({ success, token, message }) => {
         if (success) {
           authenticate(token, () => {
-            setValues({
+            return setValues({
               ...values,
               username: "",
               password: "",
@@ -37,7 +37,7 @@ const Login = () => {
             });
           });
         } else {
-          setValues({ ...values, error: message });
+          return setValues({ ...values, error: message });
         }
       });
   };
@@ -47,14 +47,20 @@ const Login = () => {
   };
   const loginForm = () => (
     <form className="flex flex-col w-full sm:max-w-lg p-10 bg-green-900 bg-opacity-50 rounded-lg shadow-lg m-6 animate-fade-up">
-      {error && <div className="flex flex-col mb-6 text-red-600">{error}</div>}
-      <div className="flex flex-col mb-6">
-        <label className="justify-self-start text-base" htmlFor="username">
-          Username
-        </label>
-        {error && username === "" && (
-          <p className="self-end text-sm text-red-600">Required Fields</p>
-        )}
+      {error && (
+        <div className="flex flex-col items-center mb-4 text-red-600">
+          {error}
+        </div>
+      )}
+      <div className="flex flex-col mb-4">
+        <div className="flex flex-row justify-between">
+          <label className="justify-self-start text-base" htmlFor="username">
+            Username
+          </label>
+          {error && username === "" && (
+            <p className="text-sm text-red-600">Required Fields</p>
+          )}
+        </div>
         <input
           type="text"
           id="username"
@@ -63,16 +69,19 @@ const Login = () => {
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
           onChange={handelChange("username")}
           // onBlur={verifyInput("username")}
+          required
           autoFocus
         />
       </div>
-      <div className="flex flex-col mb-6">
-        <label className="justify-self-start text-base" htmlFor="password">
-          Password
-        </label>
-        {error && password === "" && (
-          <p className="self-end text-sm text-red-600">Required Fields</p>
-        )}
+      <div className="flex flex-col mb-4">
+        <div className="flex flex-row justify-between">
+          <label className="justify-self-start text-base" htmlFor="password">
+            Password
+          </label>
+          {error && password === "" && (
+            <p className="text-sm text-red-600">Required Fields</p>
+          )}
+        </div>
 
         <input
           type="password"
@@ -81,6 +90,7 @@ const Login = () => {
           onChange={handelChange("password")}
           placeholder="Password"
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          required
           // onBlur={verifyInput("password")}
         />
       </div>

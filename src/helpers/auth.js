@@ -1,28 +1,42 @@
-export const login = (username, password) => {
-  console.log(username, password);
-  return fetch("http://192.168.0.10:8000/auth/login", {
-    method: "POST",
-    headers: { Accept: "application/json", "Content-Type": "application/json" },
-    body: JSON.stringify({ username: username, password: password }),
-  })
-    .then((res) => res.json())
-    .catch((err) => {
-      return {
-        success: false,
-        message: err,
-      };
-    });
-};
-export const authenticate = (token, next) => {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("token", token);
-    next();
-  }
-};
+import axios from "axios";
 export const isAuthenticated = () => {
   if (typeof window === "undefined") {
     return false;
   }
   if (localStorage.getItem("token")) return localStorage.getItem("token");
   return false;
+};
+
+export const authenticate = (token, next) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("token", token);
+    next();
+  }
+};
+
+export const login = async (username, password) => {
+  return axios
+    .post("http://0.0.0.0:8000/auth/login", {
+      username,
+      password,
+    })
+    .then((res) => res.data)
+    .catch((res) => {
+      return res?.response?.data || { success: false, message: res.message };
+    });
+};
+
+export const signup = (fullname, username, email, password) => {
+  return axios
+    .post("http://0.0.0.0:8000/auth/signup", {
+      fullname,
+      username,
+      email,
+      password,
+    })
+    .then((res) => res.data)
+    .catch((res) => {
+      console.log(res);
+      return res?.response?.data || { success: false, message: res.message };
+    });
 };
