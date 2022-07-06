@@ -1,108 +1,117 @@
-import React, { Fragment, useState } from "react";
-import { Redirect } from "react-router";
+import * as R from "ramda";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+
+import Input from "../components/Input";
+import Button from "../components/Button";
 import { authenticate, isAuthenticated, login } from "../helpers/auth";
+import { getProfile } from "../helpers/user";
+import store from "../store/store";
+import { setProfileFromApi } from "../store/profileSlice";
 
 const Login = () => {
   const [values, setValues] = useState({
     username: "",
     password: "",
-    error: "",
+    message: "",
     loading: false,
     didRedirect: false,
   });
-  const { username, password, error, loading, didRedirect } = values;
-  const handelChange = (name) => (event) => {
-    setValues({ ...values, error: false, [name]: event.target.value });
+  const [error, setError] = useState({});
+  const { username, password, message, loading, didRedirect } = values;
+  const handelChange = (key) => (event) => {
+    validate(key, event.target.value);
+    setValues({ ...values, message: "", [key]: event.target.value });
   };
-  const validate = () => {
-    if (!password) {
-      setValues({ ...values, error: "Please enter a valid password" });
+  const validate = (key, value) => {
+    if (["username", "password"].includes(key)) {
+      if (R.isEmpty(value)) {
+        setError((oldError) => ({
+          ...oldError,
+          [`${key}`]: `${key} cannot be empty`,
+        }));
+        return false;
+      }
+      setError((oldError) => {
+        delete oldError[key];
+        return oldError;
+      });
     }
-    if (!username)
-      setValues({ ...values, error: "Please provide a valid username" });
+    return true;
   };
+
+  const validateAll = () => {
+    return R.keys(values)
+      .map((key) => {
+        return validate(key, values[key]);
+      })
+      .every((result) => result);
+  };
+
   const onSubmit = async (event) => {
     event.preventDefault();
-    validate();
-    if (username !== "" && password !== "")
-      await login(username, password).then(({ success, token, message }) => {
-        if (success) {
-          authenticate(token, () => {
+    if (validateAll()) {
+      setValues({ ...values, loading: true });
+      await login(username, password).then(
+        ({ success, token, message: apiMessage }) => {
+          if (success) {
+            authenticate(token, () => {
+              return setValues({
+                ...values,
+                username: "",
+                password: "",
+                message: "",
+                didRedirect: true,
+                loading: false,
+              });
+            });
+          } else {
             return setValues({
               ...values,
-              username: "",
-              password: "",
-              error: false,
-              didRedirect: true,
+              message: apiMessage,
+              loading: false,
             });
-          });
-        } else {
-          return setValues({ ...values, error: message });
+          }
         }
-      });
+      );
+      await getProfile(username).then((data) =>
+        store.dispatch(setProfileFromApi(data))
+      );
+    }
   };
-  const performRedirect = () => {
-    alert("You are currently logged in");
-    return <Redirect to="/" />;
-  };
-  const loginForm = () => (
-    <form className="flex flex-col w-full sm:max-w-lg p-10 bg-green-900 bg-opacity-50 rounded-lg shadow-lg m-6 animate-fade-up">
-      {error && (
-        <div className="flex flex-col items-center mb-4 text-red-600">
-          {error}
-        </div>
-      )}
-      <div className="flex flex-col mb-4">
-        <div className="flex flex-row justify-between">
-          <label className="justify-self-start text-base" htmlFor="username">
-            Username
-          </label>
-          {error && username === "" && (
-            <p className="text-sm text-red-600">Required Fields</p>
-          )}
-        </div>
-        <input
+  const performRedirect = () => <Redirect to="/" />;
+
+  const loginForm = () => {
+    return (
+      <form className="flex flex-col w-full sm:max-w-lg p-10 bg-green-900 bg-opacity-50 rounded-lg shadow-lg m-6 animate-fade-up">
+        {message && (
+          <div className="flex flex-col items-center mb-4 text-red-600">
+            {message}
+          </div>
+        )}
+        <Input
           type="text"
-          id="username"
-          name="username"
-          placeholder="Username"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
+          value={username}
+          placeholder="Enter username"
+          label="Username"
+          error={error["username"] || !!message}
+          required
           onChange={handelChange("username")}
-          // onBlur={verifyInput("username")}
-          required
-          autoFocus
         />
-      </div>
-      <div className="flex flex-col mb-4">
-        <div className="flex flex-row justify-between">
-          <label className="justify-self-start text-base" htmlFor="password">
-            Password
-          </label>
-          {error && password === "" && (
-            <p className="text-sm text-red-600">Required Fields</p>
-          )}
-        </div>
-
-        <input
+        <Input
           type="password"
-          id="password"
           value={password}
-          onChange={handelChange("password")}
-          placeholder="Password"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          placeholder="Enter password"
+          label="Password"
+          error={error["password"] || !!message}
           required
-          // onBlur={verifyInput("password")}
+          onChange={handelChange("password")}
         />
-      </div>
 
-      <button
-        onClick={onSubmit}
-        className="mt-2 bg-green-600 hover:bg-green-800 text-gray-100 font-semibold py-2 px-4 border border-green-400 rounded shadow"
-      >
-        Login
-      </button>
-    </form>
-  );
+        <Button onClick={onSubmit} value="Login" isLoading={loading}></Button>
+      </form>
+    );
+  };
   return (
     <div className="w-full h-screen text-gray-50 flex items-center justify-center content-center ">
       {isAuthenticated() || didRedirect ? performRedirect() : loginForm()}

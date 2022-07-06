@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import validator from "validator";
 import * as R from "ramda";
-import Input from "../components/input";
+import Input from "../components/Input";
 import { signup } from "../helpers/auth";
+import Button from "../components/Button";
 const SignUp = () => {
   const [values, setValues] = useState({
     fullname: "",
@@ -23,7 +24,6 @@ const SignUp = () => {
     password,
     confPassword,
     message,
-    param,
     loading,
     didRedirect,
   } = values;
@@ -146,10 +146,8 @@ const SignUp = () => {
       setValues({ ...values, message: "Please provide correct information" });
     }
   };
-  const performRedirect = () => {
-    alert("User created successfully");
-    return <Redirect to="/login" />;
-  };
+  const performRedirect = () => <Redirect to="/login" />;
+
   const signUpForm = () => {
     return (
       <form className="flex flex-col w-full lg:max-w-lg p-10 bg-green-900 bg-opacity-50 rounded-lg shadow-lg m-6 animate-fade-up">
@@ -205,13 +203,7 @@ const SignUp = () => {
           required
           onChange={handelChange("confPassword")}
         />
-
-        <button
-          onClick={onSubmit}
-          className="mt-2 bg-green-600 hover:bg-green-800 text-gray-100 font-semibold py-2 px-4 border border-green-400 rounded shadow"
-        >
-          Sign Up
-        </button>
+        <Button onClick={onSubmit} isLoading={loading} value="Sign Up" />
       </form>
     );
   };

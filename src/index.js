@@ -1,9 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+
+import store from "./store/store";
 import "./index.css";
-import Routes from "./Routes";
+import GlobalRoutes from "./Routes";
 import reportWebVitals from "./reportWebVitals";
-ReactDOM.render(<Routes></Routes>, document.getElementById("root"));
+import { getProfile } from "./helpers/user";
+import { setProfileFromApi } from "./store/profileSlice";
+const { username } = store.getState().profile;
+if (!!username)
+  getProfile(username).then((data) => {
+    store.dispatch(setProfileFromApi(data));
+  });
+ReactDOM.render(
+  <Provider store={store}>
+    <GlobalRoutes></GlobalRoutes>
+  </Provider>,
+  document.getElementById("root")
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

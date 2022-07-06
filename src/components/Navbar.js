@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import { isAuthenticated, logout } from "../helpers/auth";
+
 const Navbar = () => {
   const [navVisible, setNavVisible] = useState(false);
   const [menuAnimationToggle, setMenuAnimationToggle] = useState(navVisible);
@@ -68,24 +71,46 @@ const Navbar = () => {
             Get Inspired
           </Link>
         </div>
-        <div
-          className={`text-xl md:text-3xl  mt-2 ${
-            menuAnimationToggle ? "animate-menu-drop" : "animate-menu-hide"
-          } `}
-        >
-          <Link to="/login" onClick={togleNavBar}>
-            Login
-          </Link>
-        </div>
-        <div
-          className={`text-xl md:text-3xl  mt-2 ${
-            menuAnimationToggle ? "animate-menu-drop" : "animate-menu-hide"
-          } `}
-        >
-          <Link to="/signup" onClick={togleNavBar}>
-            Signup
-          </Link>
-        </div>
+        {!isAuthenticated() && (
+          <>
+            <div
+              className={`text-xl md:text-3xl  mt-2 ${
+                menuAnimationToggle ? "animate-menu-drop" : "animate-menu-hide"
+              } `}
+            >
+              <Link to="/login" onClick={togleNavBar}>
+                Login
+              </Link>
+            </div>
+            <div
+              className={`text-xl md:text-3xl  mt-2 ${
+                menuAnimationToggle ? "animate-menu-drop" : "animate-menu-hide"
+              } `}
+            >
+              <Link to="/signup" onClick={togleNavBar}>
+                Signup
+              </Link>
+            </div>
+          </>
+        )}
+        {isAuthenticated() && (
+          <div
+            className={`text-xl md:text-3xl  mt-2 ${
+              menuAnimationToggle ? "animate-menu-drop" : "animate-menu-hide"
+            } `}
+          >
+            <Link
+              onClick={() => {
+                logout(() => {
+                  togleNavBar();
+                });
+              }}
+              to="/logout"
+            >
+              Logout
+            </Link>
+          </div>
+        )}
       </div>
     </React.Fragment>
   );
