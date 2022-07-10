@@ -8,11 +8,16 @@ import GlobalRoutes from "./Routes";
 import reportWebVitals from "./reportWebVitals";
 import { getProfile } from "./helpers/user";
 import { setProfileFromApi } from "./store/profileSlice";
+import { logout } from "./helpers/auth";
 const { username } = store.getState().profile;
 if (!!username)
-  getProfile(username).then((data) => {
-    store.dispatch(setProfileFromApi(data));
-  });
+  getProfile(username)
+    .then((data) => {
+      store.dispatch(setProfileFromApi(data));
+    })
+    .catch((data) => {
+      logout();
+    });
 ReactDOM.render(
   <Provider store={store}>
     <GlobalRoutes></GlobalRoutes>

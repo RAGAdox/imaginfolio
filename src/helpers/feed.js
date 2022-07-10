@@ -1,14 +1,13 @@
 import axios from "./axios";
-import { getCurrentUsername } from "./auth";
-export const getFeedPosts = async () => {
-  const username = await getCurrentUsername();
-  if (!!username) {
-    return axios
-      .get(`/user/get-feed/${username}?limit=5`)
-      .then((res) => res.data)
-      .catch((res) => {
-        return res?.response?.data || { success: false, message: res.message };
-      });
-  }
-  return { success: false, message: "User logged out" };
+import store from "../store/store";
+
+export const getFeedPosts = async (limit = 10, offset = 0) => {
+  const { username } = store.getState().profile;
+
+  return axios
+    .get(`/user/get-feed/${username}?limit=${limit}&offset=${offset}`)
+    .then((res) => res.data)
+    .catch((res) => {
+      throw res?.response?.data || { success: false, message: res.message };
+    });
 };

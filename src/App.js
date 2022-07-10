@@ -11,7 +11,7 @@ function App() {
         <div className="fixed top-0 left-0 z-50 w-full lg:w-auto">
           <Navbar />
         </div>
-        <Home />
+        {/* <Home /> */}
       </div>
     </div>
   );

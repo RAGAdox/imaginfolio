@@ -1,6 +1,7 @@
 import React from "react";
 
 const Home = () => {
+  console.log("Home Rendered");
   return (
     <div
       className="w-full h-screen
