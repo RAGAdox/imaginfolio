@@ -1,9 +1,9 @@
 const tailwindcss = require("tailwindcss");
 
 module.exports = {
-  purge: [],
-  content: ["./src/**/*.{html,js}"],
-  darkMode: "class", // or 'media' or 'class'
+  safeList: ["hidden", "inline"],
+  content: ["./src/**/*.{js,jsx,ts,tsx,vue}"],
+  important: true,
   theme: {
     extend: {
       zIndex: {
@@ -54,9 +54,6 @@ module.exports = {
         "menu-hide": "dropUp 0.5s both",
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 };
